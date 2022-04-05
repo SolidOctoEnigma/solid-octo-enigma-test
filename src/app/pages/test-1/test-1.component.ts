@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FakerProvider } from 'src/app/faker.provider';
+import { FakerProvider } from '../../faker.provider';
 
 @Component({
   selector: 'app-test-1',

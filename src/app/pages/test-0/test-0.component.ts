@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { FakerProvider } from 'src/app/faker.provider';
+import { FakerProvider } from '../../faker.provider';
 
 @Component({
   selector: 'app-test-0',
