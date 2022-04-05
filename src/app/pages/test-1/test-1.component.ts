@@ -25,6 +25,5 @@ export class Test1Component implements OnInit {
         }
       );
     }
-    console.log(this.total_item_categories);
   }
 }
