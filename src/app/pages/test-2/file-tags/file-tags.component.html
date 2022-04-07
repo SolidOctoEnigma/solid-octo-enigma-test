@@ -1,0 +1,14 @@
+<input #fileInput multiple [accept]="accepted" hidden type="file" />
+<mat-chip-list>
+  <mat-chip
+    (click)="downloadFile(file)"
+    [removable]="canUpload"
+    *ngFor="let file of files; let i = index"
+  >
+    <mat-icon *ngIf="!canUpload">attachment</mat-icon>
+    {{ file.name || file.file_name }}
+  </mat-chip>
+</mat-chip-list>
+<mat-hint>
+  {{ hint }}
+</mat-hint>
