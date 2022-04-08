@@ -13,7 +13,6 @@ export interface Attachment {
   styleUrls: ['./file-tags.component.scss'],
 })
 export class FileTagsComponent implements OnInit {
-  @Input() canUpload: boolean = false;
   @Input() files: any[] = [];
   @Input() hint = '';
   @Output() fileDownload = new EventEmitter();
@@ -37,8 +36,11 @@ export class FileTagsComponent implements OnInit {
     '.mp4',
   ];
   accepted = this.fileTypes.join(',');
+
   constructor(private readonly exportToFile: ExportToFileService) {}
+
   ngOnInit(): void {}
+
   downloadFile(file: Attachment) {
     if (file.data) {
       this.exportToFile.saveFileAs(file.data, file.file_name, file.mime_type);
