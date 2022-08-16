@@ -2,8 +2,10 @@
   <button (click)="active = 0">Test-0</button>
   <button (click)="active = 1">Test-1</button>
   <button (click)="active = 2">Test-2</button>
+  <button (click)="active = 3">Test-3</button>
 </div>
 
 <app-test-0 *ngIf="active === 0"></app-test-0>
 <app-test-1 *ngIf="active === 1"></app-test-1>
 <app-test-2 *ngIf="active === 2"></app-test-2>
+<app-test-3 *ngIf="active === 3"></app-test-3>
