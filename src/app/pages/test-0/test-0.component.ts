@@ -8,6 +8,9 @@ import { FakerProvider } from '../../faker.provider';
   styleUrls: ['./test-0.component.scss'],
 })
 export class Test0Component implements OnInit {
+  // Get people based on gender and create a list of unique countries from the people array and sort people by country
+  // The code works, but is this the best way to write it?
+
   control = new FormControl();
   countries: any = [];
   total_countries: any = {};
@@ -16,15 +19,17 @@ export class Test0Component implements OnInit {
     this.control.valueChanges.subscribe((gender) => {
       this.fakerProvider.getPeople(gender).subscribe((resp) => {
         const countries = [];
-        for (const person in resp) {
+        for (const person of resp) {
           countries.push((person as any).address.country);
         }
-        this.countries = [...new Set(countries)];
+        this.countries = countries.filter(
+          (v, i, a) => a.findIndex((b) => b == v) == i
+        );
 
-        this.countries.map((country: any) => {
-          this.total_countries[country] = resp.filter(
-            (person: any) => person.address.country === country
-          );
+        this.countries.some((country: any) => {
+          this.total_countries[country] = resp.filter((person: any) => {
+            person.address.country === country;
+          });
         });
       });
     });

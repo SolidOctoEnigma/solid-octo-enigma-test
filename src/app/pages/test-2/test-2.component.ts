@@ -7,6 +7,8 @@ import { Attachment } from './file-tags/file-tags.component';
   styleUrls: ['./test-2.component.scss'],
 })
 export class Test2Component implements OnInit {
+  // We created a file tag list where we can download items, we need a way to delete these items as well.
+  //  Implement delete function
   files = [
     {
       file_name: 'secret_documents_about_stargate_program.pdf',
@@ -28,4 +30,5 @@ export class Test2Component implements OnInit {
   download(file: Attachment) {
     console.log(`Downloading ${file.file_name}!`);
   }
+  delete() {}
 }

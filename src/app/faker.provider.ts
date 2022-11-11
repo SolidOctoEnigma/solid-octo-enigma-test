@@ -8,7 +8,7 @@ export class FakerProvider {
   constructor(public http: HttpClient) {}
   getPeople(gender: string): Observable<any> {
     return this.http
-      .get(`https://fakerapi.it/api/v1/persons?_quantity=50&_gender=${gender}`)
+      .get(`https://fakerapi.it/api/v1/persons?_quantity=10&_gender=${gender}`)
       .pipe(
         pluck('data'),
         map((people) => [
