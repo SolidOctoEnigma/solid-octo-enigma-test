@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { lastValueFrom, map, Observable, pluck } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { Book, Person, Product } from './pages/faker';
 @Injectable({
   providedIn: 'root',
 })
 export class FakerProvider {
   constructor(public http: HttpClient) {}
-  getPeople(gender: string): Observable<any> {
+  getPeople(gender: string): Observable<Person[]> {
     return this.http
       .get(`https://fakerapi.it/api/v1/persons?_quantity=10&_gender=${gender}`)
       .pipe(
@@ -39,16 +40,19 @@ export class FakerProvider {
         ])
       );
   }
-  getItems(): Promise<any> {
+  getItems(): Promise<Product[]> {
     return lastValueFrom(
       this.http
         .get(
           `https://fakerapi.it/api/v1/products?_quantity=50&_taxes=28&_categories_type=string`
         )
-        .pipe(pluck('data'))
+        .pipe(
+          pluck('data'),
+          map((items) => items as Product[])
+        )
     );
   }
-  getBooks(): Observable<any> {
+  getBooks(): Observable<Book[]> {
     return this.http.get('https://fakerapi.it/api/v1/books?_quantity=50').pipe(
       pluck('data'),
       map((books) => [
